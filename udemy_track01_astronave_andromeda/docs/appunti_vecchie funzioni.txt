@@ -1,0 +1,124 @@
+class Entities(ABC):
+    def __init__(self, hp, ammo, fuel, posX, posY, dmg):
+        self.hp = hp
+        self.ammo = ammo
+        self.fuel = fuel
+        self.posX = posX
+        self.posY = posY
+        self.dmg = dmg
+    # =======================================
+    # Position functions
+    @abstractmethod
+    def up(self):
+        self.posY += random.randrange(0, 100)
+        if (self.posY <= 600) or (self.posX <= 600):
+            # per evitare che si sposti troppo dal quadrante  
+            self.posX -= 50
+            self.posY -= 50
+    @abstractmethod
+    def down(self):
+        self.posY -= random.randrange(0, 100)
+        if (self.posY <= 600) or (self.posX <= 600):
+            # per evitare che si sposti troppo dal quadrante  
+            self.posX -= 50
+            self.posY -= 50
+    @abstractmethod
+    def right(self):
+        self.posX += random.randrange(0, 100)
+        if (self.posY <= 600) or (self.posX <= 600):
+            # per evitare che si sposti troppo dal quadrante  
+            self.posX -= 50
+            self.posY -= 50
+    @abstractmethod        
+    def left(self):
+        self.posX -= random.randrange(0, 100)
+        if (self.posY <= 600) or (self.posX <= 600):
+            # per evitare che si sposti troppo dal quadrante  
+            self.posX -= 50
+            self.posY -= 50
+    @abstractmethod
+    def shoot(self):
+        return self.dmg
+
+
+ # ====================================
+    # Heal Functions 
+    def getHeal(self):
+        return self.hp
+    def setHealAfterMedikit(self, hp):
+        self.hp += hp
+    def setHealAfterDmg(self, dmg):
+        self.hp -= dmg
+    # =======================================
+    # Shoot & Realod
+    def getAmmo(self):
+        return self.ammo
+    def reload(self, ammo):
+        self.ammo += ammo
+    def shoot(self):
+        if (self.ammo == 0 ):
+            return {"dmg": 0, "ammo": 0}
+        else:
+            self.ammo -= 2
+            return {"dmg": self.dmg, "ammo": self.ammo}
+    # =======================================
+    # Fuel 
+    def getFuel(self):
+        return self.fuel
+    def setFeul(self):
+        self.fuel -= 2
+
+
+class powerUp(Entities):
+    def __init__(self, type, value):
+        self.type = type
+        self.value = value
+    # ===========================================
+    # Position functions
+    @abstractmethod
+    def up(self):
+        self.posY += random.randrange(0, 100)
+        if (self.posY <= 600) or (self.posX <= 600):
+            # per evitare che si sposti troppo dal quadrante  
+            self.posX -= 50
+            self.posY -= 50
+    @abstractmethod
+    def down(self):
+        self.posY -= random.randrange(0, 100)
+        if (self.posY <= 600) or (self.posX <= 600):
+            # per evitare che si sposti troppo dal quadrante  
+            self.posX -= 50
+            self.posY -= 50
+    @abstractmethod
+    def right(self):
+        pass
+    @abstractmethod        
+    def left(self):
+        pass
+    # =============================================
+    def getSmallPowerUpTypeMedikit(self):
+        self.type = TypePowerUp.MEDIKIT
+        self.value = 10
+    def getMediumPowerUpTypeMedikit(self):
+        self.type = TypePowerUp.MEDIKIT
+        self.value = 25
+    def getBigPowerUpTypeMedikit(self):
+        self.type = TypePowerUp.MEDIKIT
+        self.value = 50
+    def getSmallPowerUpTypeAmmo(self):
+        self.type = TypePowerUp.AMMO
+        self.value = 10
+    def getMediumPowerUpTypeAmmo(self):
+        self.type = TypePowerUp.AMMO
+        self.value = 25
+    def getBigPowerUpTypeAmmo(self):
+        self.type = TypePowerUp.AMMO
+        self.value = 50
+    def getDoubleDmgTypeBonus(self):
+        self.type = TypePowerUp.BONUS_DMG
+        self.value = "x2"
+    
+class TypePowerUp(Enum):
+    MEDIKIT = "medikit"
+    AMMO = "ammo"
+    BONUS_DMG = "x2"

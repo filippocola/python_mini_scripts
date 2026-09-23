@@ -1,0 +1,204 @@
+Corso Python da 0 a Professionista:
+
+===========================================================================================================
+| Quest: Andrea vuole che scavi nella tua testa e ti ricordi come stradiamine funzioni python             |
+| (te lo ricordi più o meno bene quindi sarà una palla, ma mettiti con la santa pazienza e fallo! OK? )   |
+===========================================================================================================
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\|
+===========================================================================================================
+| Tips: Non creare 300 files diversi, tienine uno e tienilo pulito altrimenti ti perdi.                   |
+| Metti i commenti e dividi il codice per sezioni e numero di video.                                      |
+===========================================================================================================
+
+=== PRENDI APPUNTI POTREBBERO FARTI DOMANDE ====
+
+
+APPENDICE: 
+1. Oggetti e Concetti. 
+2. La classificazione. 
+3. Incapsulamento. 
+
+
+1. Oggetti e Concetti:
+
+Definizione di oggetto:
+Un oggetto è un entità qualunque al quale possiamo applicare un concetto, 
+questo concetto ci permette di riconoscere la natura dell'oggetto permettendoci di rappresentarne la natura
+questa è la CLASSIFICAZIONE. 
+
+Un oggetto è un istanza di un concetto (classe/object type). 
+    1. Un pioppo (oggetto) è un istanza di un concetto (Albero).
+    2. una Nissan skyline R-34 è un istanza di un concetto (automobile). 
+
+
+
+2. La Classificazione:
+Un oggetto possiede delle "funzionalità" che ci permettono di modificare le proprietà di un determinato oggetto. 
+ad esempio l'oggetto telecamera avrà la funzionalità "Zoom" che ci permette di vedere più da vicino un immagine o più banalmente la funzionalità di accensione/spegnimento. 
+
+
+
+3. Incapsulamento (information hiding):
+un oggetto è un istanza di una classe (is-a)
+gli attributi di una classe sono le proprietà (variabili, es: "cilindrata" per le automobili).
+i metodi sono le funzioni di una classe. 
+l'insieme di queste due proprietà di una classe vengono detti "Membri". 
+Una classe può contenere dei metodi/attributi interni non utilizzabili dall'esterno (private) oppure può esporre dei metodi 
+(pubblici) verso l'esterno permettendo ad altre classe di utilizzare quelle interfacce. 
+il gioco di queste due proprietà permettono di creare dei semplici blocchi di sicurezza all'interno dell'applicazione stessa. 
+
+
+4. Membri di istanza e di classe:
+Se creiamo 3 ogetti istanza di una classe (l'esempio viene posto su un conto corrente, dove le istanze ereditano l'attributo saldo)
+ogni oggetto avrà il proprio saldo. 
+Esistono membri di una classe che non sono pensati per essere usati sulla singola istanza di una classe (oggetto) ma per essere usati su tutta la classe. 
+(esempio un metodo che tiene traccia di tutti i conti correnti aperti, non è un metodo di un singolo conto (istanza) ma di tutta la classe. )
+
+5. Generalizzazione:
+la Generalizzazione è una relazione che riguarda SOLO le classi, ci permettte di affermare che un concetto è parte di un concetto più generale. 
+sottoclasse -> classe 
+automobile -> Veicolo
+dal particolare -> generale ( generalizzazione )
+dal genrale > particolare ( specializzazione ) 
+tipo di relazione: kind-of - tipo di.
+
+
+6. Ereditarietà 
+Creando una sottoclasse di una superclasse la sottoclasse eredità (può utilizzare i membri della superclasse. 
+Non vengono replicatti, in realtà vengono resi disponibili in modo automatico. 
+Override: è una caratteristica che ci permette di ridefinire un metodo definito in una superclasse all'interno di una sottoclasse. 
+
+
+7. La Composizione:
+Relazione tra oggetti, noi posssiamo rappresentare un oggetto che al suo interno abbia altri oggetti (matriosca)
+un auto è composta a sua volta da molti oggetti diversi (motore, volante, cambio, ecc. ecc. ). 
+le parti di un oggetto definiscono un oggetto. 
+(se ha il becco, starnazza e ha le zampe di una papera allora è una papera.  quack quack motherfucker ). 
+
+8. Collaborazione:
+è la collaborazione tra oggetti e metodi per ottenere un risultato (es. versamento -> conto -> saldo). 
+
+
+9. Gli oggetti software:
+tutti gli oggetti all'interno di un software hanno 2 responsabilità:
+1. Fare. 
+2. Conoscere. 
+
+1 - (fare) Sono espresse dai metodi. 
+2 - (conoscere) sono implementate negli attributi che vengono resi disponibili anche agli altri oggetti. 
+
+Identità: tutti gli oggetti possiedono un identità che li rendono distinti dagli alti, 
+questa proprietà viene generalmente garantita a livello logico e a livello di implementazione. 
+
+livello logico: un oggetto può avere un identità attraverso il valore di alcuni suoi attributi (codice del conto)
+
+
+=================================================================================================================
+=================================================================================================================
+| Okay la parte di teoria facile è finita, ora si inizia a ballare sul serio!|
+|----------------------------------------------------------------------------|
+|			     ADVANCED PYTHON 				     |
+|----------------------------------------------------------------------------|
+
+1. Multiple Inheritance (ereditarietà multipla)
+Quando vogliamo usare l'ereditarietà multipla, la sintassi rimane identica, ma le classi vanno specificate in fila. 
+[ Es. class class1(class2, class3): pass ] 
+In caso di override (due funzioni con lo stesso nome ma in due classi diverse), python segue il method resolution order (MRO), l'attributo viene ricercato nella sottoclasse stessa, se viene trovato viene utilizzato. Se non viene trovato, il MRO risale di un livello la gerarchia delle super-classi, le esamina 1 ad 1 nell'ordine della definizione (se la classe A è stata scritta prima della classe B, allora il meccanismo dell'MRO proverà prima in A). 
+di conseguenza, eseguirà il primo metodo che trova in base a cosa hai scritto prima. 
+Se nel caso, hai allucinato e quel metodo non esiste da nessuna parte, riceverai un attributError, ma prima di ciò il MRO fa un ultimissimo tentativo provando nell'object, padre onnipotente e generatrice di tutto.
+
+
+2. Classe object e type
+In Python TUTTO è un object, con una relazione "is-a", quindi quando istanziamo una classe, anch'essa sarà a sua volta un istanza della classe object. 
+Anche type è una classe "base" di python cosi come object, come proprie istanze, la classe type possiede la "tipologia" delle strutture dati (List, Dict, Set, FrozenSet, ecc.. ecc..), ma anche classi che definiamo noi. in definitiva la classe type possiede tutte le tipologie di classi. Un oggetto NON FA PARTE della classe type, la sua classe si. 
+c1 = Conto() # NON fa parte della classe type, ma è un istanza di Conto() => Is-A. 
+Conto()  # Fa parte della classe type. 
+object è un istanza della classe type e vice versa.
+
+
+3. Il Costruttore __new__
+lo scopo del metodo __init__ è quello di "inizializzatore" di una classe, il costruttore si chiama __new__. 
+prima viene chiamato new e successivamente init, ricevendo di fatto l'istanza della classe. 
+__new__(cls [, ...]) 
+(il costruttore è un metodo statico) 
+class myClass():
+	def __new__(cls):
+		print("Istanza creata")
+	def __init__(self):
+		print("Istanza inizializzata")
+(con questa piccola porzione di codice il metodo init non viene chiamato, viene chiamato solo new. 
+
+Per risolvere questa matassa, bisogna aggiungere un ulteriore riga di codice:
+
+istanza = super().__new__(cls)
+return istanza
+Facendo cosi, new viene implementato nella classe di default object, e sarà lei che genererà l'istanza della classe, successivamente verrà chiamato il metodo init con parametro self (che sarà l'istanza creata nel new)
+
+
+4. Iterabili e iteratori 
+Container = è una struttura dati che supporta il test di appartenenza (lista, dict, tuple, set, stringhe, ecc.. ecc..)
+un contenitore è un oggetto iterabile, un file aperto ad esempio è un iterabile ma non è un contenitore. 
+
+Un iterabile è un oggetto che ritorna un iteratore, allo scopo di poter iterare sui propri elementi. 
+__iter()__
+
+Un iteratore è un oggetto che produce il prossimo elemento di un iterabile, attraverso il metodo __next()__
+
+un oggetto può essere sia un iterabile che un iteratore se implementa entrambi i metodi. 
+ES: 
+l1 = [1,2,3]
+it1 = iter(l1)
+next(it1)
+[IMPORTANTE] => é la stessa cosa de fa un for, ma questa può andare in exception. 
+
+5. Creazione di un iteratore:
+class iteratore:
+def __iter__(self):
+	self.attr = any
+	return self
+def __next__(self):
+	if(condition):
+		n = self.attr
+		self.attr = any
+		return n
+	else:
+		raise StopIteration
+		
+
+myclass = iteratore()
+myiter = iter(myclass)
+print(next(myiter)) // per ogni valore della lista..
+Quando si raggiunge il massimo + 1, il programma lancia una stopIteration. 
+Si può fare serenamente con un for, e l'eccezione viene gestita in automatico (non viene sollevato nulla)
+
+
+6. Generators Functions 
+yield = cedere.  
+Se la keyword yield è presente, allora l'intera funzione viene trasformata in un iteratore automaticamente. 
+e l'iterazione avviene esattamente dove è presente la keyword. 
+In quel punto la funzione si ferma, cede il valore corrente dell'iterazione al chiamante della funzione e se viene nuovamente chiamata procede nella prossima istruzione da dove si era interrotto. 
+** yield var ** 
+
+7. Generators Expression
+è di fatto equivalente di una list comprension. 
+
+la list comprension produce in uscita una lista e viene eseguita tutta de botta 
+una generator expression è lazy, viene eseguita valore per valore per ogni singola iterazione. 
+
+
+8. Abstract Classes 
+Una classe astratta è una classe che non può essere istanziata da sola, ma solo come base per altre classi. 
+Il suo scopo principale e quella di definire dei metodi astrratti che dovranno essere poi implementati nelle sottoclassi senza che questa classe astratta ne fornisca una reale implementazione. 
+
+La classe astratta definisce un "contratto" che le sottoclassi che dovranno rispettare di implementare i metodi astratti con funzionalità ben definite. 
+
+Questi metodi vengono definiti Concrete Method. 
+
+Le principali caratteristiche delle classi astratte:
+1. Non sono istanziabili. 
+2. Forniscono un interfaccia
+3. Possono contenere metodi concreti. 
+
+(so praticamente le interfacce di typescript.) 
+
+

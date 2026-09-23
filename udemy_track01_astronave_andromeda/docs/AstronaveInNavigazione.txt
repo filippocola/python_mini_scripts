@@ -1,0 +1,8 @@
+Astronave in navigazione:
+
+L'astronave Epsilon è un missione per esplorare nuovi mondi nel vasto spazio siderale.
+La sua posizione e quella delle 
+destinazioni di interesse che sono rappresentate mediante coordinate nel piano cartesiano 2D. 
+La tua sfida e sviluppare un sistema che permetta all'astronave di navigare attraverso questi
+punti nello spazio. 
+
